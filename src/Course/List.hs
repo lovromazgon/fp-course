@@ -338,8 +338,10 @@ lengthGT4 x = lengthGT4' x 1
 reverse ::
   List a
   -> List a
-reverse =
-  error "todo: Course.List#reverse"
+reverse Nil = Nil
+reverse x = foldLeft (\ys y -> y:.ys) Nil x
+--reverse =
+--  error "todo: Course.List#reverse"
 
 -- | Produce an infinite `List` that seeds with the given value at its head,
 -- then runs the given function for subsequent elements
@@ -353,8 +355,9 @@ produce ::
   (a -> a)
   -> a
   -> List a
-produce =
-  error "todo: Course.List#produce"
+produce f a = a :. (produce f $ f a)
+--produce =
+--  error "todo: Course.List#produce"
 
 -- | Do anything other than reverse a list.
 -- Is it even possible?
@@ -368,8 +371,7 @@ produce =
 notReverse ::
   List a
   -> List a
-notReverse =
-  error "todo: Is it even possible?"
+notReverse = reverse
 
 ---- End of list exercises
 
